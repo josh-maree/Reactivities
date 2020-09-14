@@ -15,6 +15,7 @@ interface DetailParams {
 
 const ActivityDetails: React.FC<RouteComponentProps<DetailParams>> = ({
   match,
+  history
 }) => {
   const activityStore = useContext(ActivityStore);
   const { activity, loadActivity, loadingInitial } = activityStore;
@@ -24,7 +25,10 @@ const ActivityDetails: React.FC<RouteComponentProps<DetailParams>> = ({
   }, [loadActivity, match.params.id]);
 
   if (loadingInitial || !activity)
+  {
     return <LoadingComponent content="Loading Activity..." />;
+  }
+  
   return (
     <Grid>
       <Grid.Column width={10}>
